@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <Authors>Viktor Jonsson</Authors>
+    <PackageId>DataUtils.DataUrl</PackageId>
+    <Product>DataUtils.DataUrl</Product>
+    <Description>Implementation of the DataUrl scheme (rfc2397)</Description>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageLicenseUrl>https://opensource.org/licenses/MIT</PackageLicenseUrl>
+    <RepositoryUrl>https://github.com/victorjonsson/dotnet-DataUrl</RepositoryUrl>
+    <PackageTags>DataUrl, DataUri, Uri, web, html</PackageTags>
+    <Version>1.0.1</Version>
+  </PropertyGroup>
+
+</Project>
