@@ -60,7 +60,7 @@ namespace DataUtils.Test
         [Fact]
         public void test_that_we_can_create_data_urls()
         {
-            var noneAsciiContent = "ÄÖÅ entré";
+            var noneAsciiContent = "Ã„Ã–Ã… entrÃ©";
             var nonAsciiContentBase64 = "w4TDlsOFIGVudHLDqQ==";
             var theory = new Dictionary<string, DataUrlSpec>()
             {
@@ -69,14 +69,14 @@ namespace DataUtils.Test
                     new DataUrlSpec() {ContentType="text/plain", ContentBase64 = Base64Content, NoneBase64Content = Content}
                 }, */
                 {
-                    "data:text/plain;base64;paramX=monkey;paramY="+WebUtility.UrlEncode("frodo baggins äöå")+"," + nonAsciiContentBase64,
+                    "data:text/plain;base64;paramX=monkey;paramY="+WebUtility.UrlEncode("frodo baggins Ã¤Ã¶Ã¥")+"," + nonAsciiContentBase64,
                     new DataUrlSpec() {
                         ContentType ="text/plain",
                         ContentBase64 = nonAsciiContentBase64,
                         ContentRaw = noneAsciiContent,
                         Parameters = new KeyValuePair<string, string> [] {
                             new KeyValuePair<string, string>("paramX", "monkey"),
-                            new KeyValuePair<string, string>("paramY", "frodo baggins äöå")
+                            new KeyValuePair<string, string>("paramY", "frodo baggins Ã¤Ã¶Ã¥")
                         }
                     }
                 }
@@ -151,10 +151,12 @@ namespace DataUtils.Test
         [Fact]
         public void test_that_we_can_try_to_parse_jibberisch_without_crashing()
         {
-            DataUrl dataUrl;
-            DataUrlParser.TryParse("jibberisch", out dataUrl);
+            var parsedJibberisch = DataUrlParser.TryParse("jibberisch", out var dataUrl);
+            Assert.False(parsedJibberisch);
             Assert.Null(dataUrl);
-            DataUrlParser.TryParse(null, out dataUrl);
+
+            var parsedNull = DataUrlParser.TryParse(null, out dataUrl);
+            Assert.False(parsedNull);
             Assert.Null(dataUrl);
         }
 
@@ -162,8 +164,8 @@ namespace DataUtils.Test
         public void test_that_we_can_try_to_parse_valid_data_url()
         {
             var dataUrlString = "data:text/plain;base64," + Base64Content;
-            DataUrl dataUrl;
-            DataUrlParser.TryParse(dataUrlString, out dataUrl);
+            var parsed = DataUrlParser.TryParse(dataUrlString, out var dataUrl);
+            Assert.True(parsed);
             Assert.NotNull(dataUrl);
             Assert.Equal("text/plain", dataUrl.ContentType);
             Assert.Equal(Content, dataUrl.ReadAsString());
