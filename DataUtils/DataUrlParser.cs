@@ -84,14 +84,15 @@ namespace DataUtils
         /// </summary>
         /// <param name="dataUrl">The DataUrl string (rfc2397)</param>
         /// <param name="outDataUrl"></param>
-        public static void TryParse(string dataUrl, out DataUrl outDataUrl)
+        public static bool TryParse(string dataUrl, out DataUrl outDataUrl)
         {
             try
             {
                 outDataUrl = Parse(dataUrl);
-                return;
+                return true;
             } catch { }
             outDataUrl = null;
+            return false;
         }
     }
 }
