@@ -17,6 +17,9 @@ var dataUrl = new DataUrl("data:image/gif....");
 // Get content as string
 dataUrl.ReadAsString();
 
+// Get content as string with different encoding
+dataUrl.ReadAsString(Encoding.UTF7);
+
 // Get content as base64 encoded string
 dataUrl.ReadAsStringBase64Encoded();
 
