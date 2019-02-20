@@ -37,9 +37,7 @@ dataUrl.Parameters;
 The constructor will throw `DataUrlParseException` if it's not possible to construct a DataUrl instance from the given string. You can also use `DataUrlParser.TryParse` if you don't want to deal with exceptions.
 
 ```C#
-DataUrl parsedDataUrl;
-DataUrlParser.TryParse(dataUrlString, ref parsedDataUrl);
-if (parsedDataUrl != null) {
+if (DataUrlParser.TryParse(dataUrlString, ref var parsedDataUrl)) {
     // We could parse a data url
 }
 ```
