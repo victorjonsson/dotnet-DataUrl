@@ -1,3 +1,5 @@
+# DataUtils.DataUrl
+
 Class that can be used as [value object](https://en.wikipedia.org/wiki/Value_object) representing a DataUrl ([rfc2397](https://tools.ietf.org/html/rfc2397))
 
 - Parse DataUrl strings
