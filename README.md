@@ -1,5 +1,9 @@
+Class that can be used as [value object](https://en.wikipedia.org/wiki/Value_object) representing a DataUrl ([rfc2397](https://tools.ietf.org/html/rfc2397))
 
-Library that can be used to create and read data from a DataUrl ([rfc2397](https://tools.ietf.org/html/rfc2397))
+- Parse UrlData strings
+- Construct UrlData strings from byte
+- Cross platform, targets .NET Standard 2.0 
+- Published as [Nuget package](	https://www.nuget.org/packages/DataUtils.DataUrl)
 
 ## Reading data URL's from string
 
@@ -24,6 +28,16 @@ dataUrl.ContentType;
 dataUrl.Parameters; 
 
 ``` 
+
+The constructor will throw `DataUrlParseException` if it's not possible to construct a DataUrl instance. You can also use `DataUrlParser.TryParse` if you don't want to deal with exceptions.
+
+```C#
+DataUrl parsedDataUrl;
+DataUrlParser.TryParse(dataUrlString, ref parsedDataUrl);
+if (parsedDataUrl != null) {
+    // We could parse a data url
+}
+```
 
 ## Creating data URL's
 
@@ -53,14 +67,4 @@ var dataUrl = DataUrl.NewDataUrl(
 // When having another encoding other than default
 DataUrl.NewDataUrl(myString, "text/plain", Encoding.UTF7);
 DataUrl.NewDataUrl(myString, "text/plain", parameters, Encoding.UTF7);
-```
-
-All of the methods above will throw `DataUrlParseException` in case it's not possible to construct a DataUrl instance. You can also use `DataUrlParser.TryParse` if you don't want to deal with exceptions.
-
-```C#
-DataUrl parsedDataUrl;
-DataUrlParser.TryParse(dataUrlString, ref parsedDataUrl);
-if (parsedDataUrl != null) {
-    // We could parse a data url
-}
 ```
