@@ -9,7 +9,7 @@ namespace DataUtils
     /// Class that can be used as value object representing a DataUrl (rfc2397).
     /// </summary>
     /// <seealso cref="NewDataUrl(string, string, Encoding)"/>
-    public class DataUrl
+    public struct DataUrl
     {
         /// <summary>
         /// Create new DataUrl from string

@@ -91,7 +91,7 @@ namespace DataUtils
                 outDataUrl = Parse(dataUrl);
                 return true;
             } catch { }
-            outDataUrl = null;
+            outDataUrl = new DataUrl();
             return false;
         }
     }

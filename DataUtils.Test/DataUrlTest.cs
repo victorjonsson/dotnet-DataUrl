@@ -153,11 +153,9 @@ namespace DataUtils.Test
         {
             var parsedJibberisch = DataUrlParser.TryParse("jibberisch", out var dataUrl);
             Assert.False(parsedJibberisch);
-            Assert.Null(dataUrl);
 
             var parsedNull = DataUrlParser.TryParse(null, out dataUrl);
             Assert.False(parsedNull);
-            Assert.Null(dataUrl);
         }
 
         [Fact]
